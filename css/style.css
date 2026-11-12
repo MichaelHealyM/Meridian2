@@ -1,0 +1,451 @@
+/* Bootstrap 5.3 (in vendor/) does the heavy lifting: layout, spacing, colour, type, cards, forms,
+   progress bars and so on all come from its classes in index.html. This file holds only what
+   Bootstrap has no class for:
+     1. Fonts            2. Brand theme (Bootstrap's own variables)   3. Page basics
+     4. Components       (browser frame dots, slides, ISA-88, timeline, PLC and batch demos) */
+
+/* ======================================================================
+   1. FONTS (self-hosted)
+   ====================================================================== */
+
+@font-face {
+  font-family: 'Barlow Semi Condensed';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 600;
+  src: url('../fonts/barlow-semi-condensed-latin-600-normal.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Barlow Semi Condensed';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 700;
+  src: url('../fonts/barlow-semi-condensed-latin-700-normal.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'IBM Plex Sans';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400;
+  src: url('../fonts/ibm-plex-sans-latin-400-normal.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'IBM Plex Sans';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 500;
+  src: url('../fonts/ibm-plex-sans-latin-500-normal.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400;
+  src: url('../fonts/ibm-plex-mono-latin-400-normal.woff2') format('woff2');
+}
+
+/* ======================================================================
+   2. BRAND THEME: change colours and fonts here
+   ====================================================================== */
+
+:root,
+[data-bs-theme='light'] {
+  --bs-primary: #1c6fb8;
+  --bs-success: #1f9d6b;
+  --bs-info: #1c8fb8;
+  --bs-warning: #d98a00;
+  --bs-danger: #c0392b;
+  --bs-dark: #14212b;
+  --bs-primary-rgb: 28, 111, 184;
+  --bs-success-rgb: 31, 157, 107;
+  --bs-info-rgb: 28, 143, 184;
+  --bs-warning-rgb: 217, 138, 0;
+  --bs-danger-rgb: 192, 57, 43;
+  --bs-dark-rgb: 20, 33, 43;
+  --bs-font-sans-serif: 'IBM Plex Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --bs-font-monospace: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  --bs-body-color: #14212b;
+  --bs-body-color-rgb: 20, 33, 43;
+  --bs-body-bg: #e6eaed;
+  --bs-body-bg-rgb: 230, 234, 237;
+  --bs-secondary-color: rgba(20, 33, 43, 0.75);
+  --bs-secondary-color-rgb: 20, 33, 43;
+  --bs-tertiary-color: rgba(20, 33, 43, 0.5);
+  --bs-tertiary-color-rgb: 20, 33, 43;
+  --bs-tertiary-bg: #f6f8f9;
+  --bs-tertiary-bg-rgb: 246, 248, 249;
+  --bs-link-color: #1c6fb8;
+  --bs-link-color-rgb: 28, 111, 184;
+  --bs-link-hover-color: #165993;
+  --bs-link-hover-color-rgb: 22, 89, 147;
+  --bs-highlight-color: #14212b;
+  --bs-highlight-bg: #fff316;
+  --bs-border-color: #b7c2ca;
+  --bs-focus-ring-color: rgba(28, 111, 184, 0.25);
+  --bs-form-valid-color: #1f9d6b;
+  --bs-form-valid-border-color: #1f9d6b;
+  --bs-form-invalid-color: #c0392b;
+  --bs-form-invalid-border-color: #c0392b;
+}
+
+[data-bs-theme='dark'] {
+  --bs-body-color: #e6eaed;
+  --bs-body-color-rgb: 230, 234, 237;
+  --bs-body-bg: #0e1820;
+  --bs-body-bg-rgb: 14, 24, 32;
+  --bs-secondary-color: rgba(230, 234, 237, 0.75);
+  --bs-secondary-color-rgb: 230, 234, 237;
+  --bs-tertiary-color: rgba(230, 234, 237, 0.5);
+  --bs-tertiary-color-rgb: 230, 234, 237;
+  --bs-tertiary-bg: #14212b;
+  --bs-tertiary-bg-rgb: 20, 33, 43;
+  --bs-link-color: #77a9d4;
+  --bs-link-hover-color: #92badd;
+  --bs-link-color-rgb: 119, 169, 212;
+  --bs-link-hover-color-rgb: 146, 186, 221;
+  --bs-code-color: #1885b5;
+  --bs-highlight-color: #e6eaed;
+  --bs-highlight-bg: #660803;
+  --bs-border-color: #2b3d4d;
+  --bs-form-valid-color: #75b798;
+  --bs-form-valid-border-color: #75b798;
+  --bs-form-invalid-color: #ea868f;
+  --bs-form-invalid-border-color: #ea868f;
+}
+
+/* Headings and the brand name use the condensed display face */
+h6,
+.h6,
+h5,
+.h5,
+h4,
+.h4,
+h3,
+.h3,
+h2,
+.h2,
+h1,
+.h1,
+.navbar-brand {
+  font-family: 'Barlow Semi Condensed', 'Arial Narrow', sans-serif;
+  font-weight: 700;
+}
+
+/* Bootstrap's compiled CSS hard-codes its default blue for focus rings, checked boxes and the
+   primary button, so those are restated here in the brand blue. */
+.form-control:focus,
+.form-select:focus,
+.form-check-input:focus {
+  border-color: #8db7db;
+  box-shadow: 0 0 0 var(--bs-focus-ring-width) var(--bs-focus-ring-color);
+}
+
+.form-check-input:checked {
+  background-color: var(--bs-primary);
+  border-color: var(--bs-primary);
+}
+
+.btn-primary {
+  --bs-btn-bg: #1c6fb8;
+  --bs-btn-border-color: #1c6fb8;
+  --bs-btn-hover-bg: #185e9c;
+  --bs-btn-hover-border-color: #165993;
+  --bs-btn-focus-shadow-rgb: 62, 133, 195;
+  --bs-btn-active-bg: #165993;
+  --bs-btn-active-border-color: #15538a;
+  --bs-btn-disabled-bg: #1c6fb8;
+  --bs-btn-disabled-border-color: #1c6fb8;
+}
+
+.btn-link {
+  --bs-btn-focus-shadow-rgb: 62, 133, 195;
+}
+
+/* Bootstrap's grey outline button uses a fixed grey that is too faint on both themes */
+.btn-outline-secondary {
+  --bs-btn-color: var(--bs-secondary-color);
+}
+
+.nav-link:focus-visible {
+  box-shadow: 0 0 0 var(--bs-focus-ring-width) var(--bs-focus-ring-color);
+}
+
+/* FAQ: no blue tint on the open item, and the brand focus ring */
+.accordion {
+  --bs-accordion-bg: transparent;
+  --bs-accordion-active-bg: transparent;
+  --bs-accordion-btn-focus-box-shadow: 0 0 0 var(--bs-focus-ring-width) var(--bs-focus-ring-color);
+}
+
+.btn-close {
+  --bs-btn-close-focus-shadow: 0 0 0 var(--bs-focus-ring-width) var(--bs-focus-ring-color);
+}
+
+/* ======================================================================
+   3. PAGE BASICS
+   ====================================================================== */
+
+/* Keeps anchor targets clear of the sticky navbar. (Smooth scrolling, including the
+   reduced-motion opt-out, already comes from Bootstrap.) */
+html {
+  scroll-padding-top: 5rem;
+}
+
+/* Faint engineering-drawing grid behind the hero */
+.bg-grid {
+  background-image:
+    linear-gradient(color-mix(in srgb, currentColor 7%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in srgb, currentColor 7%, transparent) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+.cursor-help {
+  cursor: help;
+}
+
+/* The "Skip to content" link has to sit above the sticky navbar (z-index 1020) when focused */
+.visually-hidden-focusable {
+  z-index: 1030;
+}
+
+/* ======================================================================
+   4. COMPONENTS
+   ====================================================================== */
+
+/* ---- Browser-window frame: a Bootstrap card, plus the three traffic-light dots ---- */
+
+.browser-dot {
+  width: 0.65rem;
+  height: 0.65rem;
+}
+
+.browser-dot--close {
+  background: #f87171;
+}
+
+.browser-dot--minimise {
+  background: #facc15;
+}
+
+.browser-dot--expand {
+  background: #4ade80;
+}
+
+/* ---- Projects carousel: each slide has its own colour, set inline in index.html ---- */
+
+.project-slide {
+  min-height: 20rem;
+}
+
+/* ---- ISA-88 diagrams: depth (set inline as --depth) drives the colour ramp ---- */
+
+.isa88-box {
+  --depth: 0;
+  --bs-card-bg: color-mix(
+    in srgb,
+    var(--bs-primary) calc(var(--depth) * 5%),
+    var(--bs-tertiary-bg)
+  );
+  --bs-card-border-radius: var(--bs-border-radius-lg);
+}
+
+.isa88-cascade-bar {
+  --depth: 0;
+  /* success darkened a little so white text keeps 4.5:1 on the greener bars */
+  --cascade-end: color-mix(in srgb, var(--bs-success), black 18%);
+  margin-left: calc(var(--depth) * 10%);
+  background: color-mix(
+    in srgb,
+    var(--bs-primary) calc(100% - var(--depth) * 33%),
+    var(--cascade-end)
+  );
+}
+
+/* ---- Validation timeline: a vertical rail on phones, a horizontal one from md up ---- */
+
+.project-timeline {
+  border-left: 2px solid var(--bs-border-color);
+}
+
+.project-timeline li::before {
+  content: '';
+  position: absolute;
+  top: 0.35rem;
+  left: -1.95rem;
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: 50%;
+  background: var(--bs-primary);
+}
+
+@media (min-width: 768px) {
+  .project-timeline {
+    grid-template-columns: repeat(6, 1fr);
+    border-top: 2px solid var(--bs-border-color);
+    border-left: 0;
+  }
+
+  .project-timeline li::before {
+    top: -1.95rem;
+    left: 0;
+  }
+}
+
+/* ---- PLC demo ---- */
+
+.ladder-svg {
+  min-width: 560px;
+}
+
+.plc-pushbutton {
+  width: 3.5rem;
+  height: 3.5rem;
+  box-shadow: 0 5px 0 rgb(0 0 0 / 35%);
+  touch-action: none;
+}
+
+.plc-pushbutton.is-pressed {
+  transform: translateY(4px);
+  box-shadow: 0 1px 0 rgb(0 0 0 / 35%);
+}
+
+.plc-led {
+  width: 3.5rem;
+  height: 3.5rem;
+  border: 4px solid var(--bs-border-color-translucent);
+  background: #3b4a56;
+  transition: background 0.1s;
+}
+
+.plc-led.is-lit {
+  background: #4ade80;
+  box-shadow: 0 0 16px 5px #4ade80aa;
+}
+
+.structured-text__number {
+  width: 1.5rem;
+}
+
+/* ---- Batch demo: the vessel drawing ---- */
+
+.vessel-scene {
+  max-width: 20rem;
+}
+
+.vessel-pipe {
+  fill: none;
+  stroke: var(--bs-border-color-translucent);
+  stroke-width: 5;
+}
+
+.vessel-flow {
+  fill: none;
+  opacity: 0;
+  stroke: var(--bs-primary);
+  stroke-width: 3;
+  stroke-dasharray: 6 8;
+  animation: vessel-flow 0.5s linear infinite;
+}
+
+.vessel-flow.is-active {
+  opacity: 1;
+}
+
+.vessel-valve {
+  fill: var(--bs-border-color-translucent);
+  stroke: currentColor;
+  stroke-width: 1.5;
+}
+
+.vessel-valve.is-active {
+  fill: var(--bs-success);
+}
+
+.vessel-jacket {
+  fill: none;
+  stroke: var(--bs-border-color-translucent);
+  stroke-width: 2;
+  stroke-dasharray: 3 3;
+}
+
+.vessel-jacket.is-active {
+  stroke: var(--bs-warning);
+  stroke-width: 3;
+  stroke-dasharray: none;
+  animation: vessel-jacket-glow 1s ease-in-out infinite;
+}
+
+.vessel-liquid {
+  fill: var(--bs-primary);
+  opacity: 0.75;
+}
+
+.vessel-liquid.is-warm {
+  fill: var(--bs-warning);
+}
+
+.vessel-impeller {
+  stroke: currentColor;
+  stroke-width: 4;
+  stroke-linecap: round;
+  transform-origin: 170px 210px;
+}
+
+.vessel-impeller.is-active {
+  animation: vessel-impeller-spin 0.7s ease-in-out infinite;
+}
+
+@keyframes vessel-flow {
+  to {
+    stroke-dashoffset: -14;
+  }
+}
+
+@keyframes vessel-jacket-glow {
+  50% {
+    opacity: 0.35;
+  }
+}
+
+@keyframes vessel-impeller-spin {
+  50% {
+    transform: scaleX(0.2);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .vessel-flow,
+  .vessel-jacket.is-active,
+  .vessel-impeller.is-active {
+    animation: none;
+  }
+}
+
+/* ---- Batch demo: the sequence chart (SFC). Padding, text and progress bar are Bootstrap. ---- */
+
+.sequence-step {
+  width: 15rem;
+  max-width: 100%;
+  border: 2px solid var(--bs-border-color-translucent);
+}
+
+.sequence-step--initial {
+  border: 4px double var(--bs-border-color-translucent);
+}
+
+.sequence-step--active {
+  border-color: var(--bs-success);
+}
+
+.sequence-transition {
+  height: 1.5rem;
+  margin-left: 7rem;
+  border-left: 2px solid currentColor;
+}
+
+.sequence-transition::before {
+  content: '';
+  width: 1rem;
+  margin-right: 0.25rem;
+  border-top: 4px solid currentColor;
+}
