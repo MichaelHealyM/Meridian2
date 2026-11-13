@@ -61,21 +61,4 @@ To update Bootstrap, replace the two files in `vendor/bootstrap-5.3.8/` with the
 `dist/css/bootstrap.min.css` and `dist/js/bootstrap.bundle.min.js`, and update the version in the
 folder name and the two pages.
 
-## Bootstrap conventions used
 
-Use Bootstrap's classes in `index.html` first, and add CSS to `css/style.css` only when Bootstrap has
-no class for it.
-
-- **Colour modes:** the light and dark themes are Bootstrap's `data-bs-theme`. Prefer its variables
-  (`var(--bs-primary)`, `var(--bs-border-color)`) to hard-coded colours so both themes keep working.
-- **Muted text:** use `text-body-secondary`, not `text-secondary`. The first follows the theme and
-  passes WCAG contrast; the second is a fixed grey that does not.
-- **Forms:** mark a bad field `.is-invalid` and put an `.invalid-feedback` after it.
-  Status messages are Bootstrap alerts.
-- **Show and hide:** toggle `d-none`. The menu highlighting is Bootstrap's ScrollSpy, switched on by
-  `data-bs-spy` on `<body>`, so it needs no JavaScript of ours.
-- **"Details" / "Case study" popups:** one shared popup shows the heading of the card or slide it was
-  opened from, and the card's own text (or the button's `data-detail-body`, if it has one).
-- **Demo keys:** S and X work only while focus is inside the PLC control panel; Space or Enter hold
-  a focused pushbutton down.
-- **Scrollable panels** get `tabindex="0"` so keyboard users can reach them.
