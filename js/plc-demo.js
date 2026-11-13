@@ -203,7 +203,7 @@
   // ---- plc-demo.client ----
   const KEYBOARD_SHORTCUTS = { s: 'start', x: 'stop' };
   /** A click is over in ~100 ms, too fast to see. The structured text keeps a press lit this long. */
-  const MIN_HIGHLIGHT_MS = 600;
+  const MIN_HIGHLIGHT_MS = 100;
   const highlightUntil = { start: 0, stop: 0 };
   let highlightTimer;
   const circuit = createSealInCircuitState();
