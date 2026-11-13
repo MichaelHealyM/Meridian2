@@ -60,5 +60,3 @@ instead. On Netlify or Cloudflare Pages you can add a `_headers` file as well.
 To update Bootstrap, replace the two files in `vendor/bootstrap-5.3.8/` with the new release's
 `dist/css/bootstrap.min.css` and `dist/js/bootstrap.bundle.min.js`, and update the version in the
 folder name and the two pages.
-
-
