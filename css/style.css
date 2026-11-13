@@ -237,6 +237,16 @@ html {
   min-height: 20rem;
 }
 
+/*
+ * Bootstrap makes each side arrow 15% of the slide wide, full height, and above the slide, so it
+ * swallowed clicks on the "Case study" button and sat on top of the text. Keep the arrows to a slim
+ * strip; the slides pad their content past it (px-5 in index.html, 3rem vs 2.5rem here).
+ */
+#projects-carousel .carousel-control-prev,
+#projects-carousel .carousel-control-next {
+  width: 2.5rem;
+}
+
 /* ---- ISA-88 diagrams: depth (set inline as --depth) drives the colour ramp ---- */
 
 .isa88-box {
